@@ -1,0 +1,21 @@
+
+
+body {
+    background-color: #faf8f8;
+}
+
+.main-content, .main-footer {
+    max-width: 1280px;
+    margin-right: auto;
+    margin-left: auto;
+}
+.main-content {
+    min-height: 700px;
+    background-color: #f3f2f2;
+}
+
+.main-footer {
+    font-size: 0.7rem;
+    color: #888;
+    background-color: #f4f4f4;
+}

@@ -1,0 +1,67 @@
+/*
+* This is a manifest file that'll be compiled into application.css, which will include all the files
+* listed below.
+*
+* Any CSS file within this directory can be referenced here using a relative path.
+*
+* You're free to add application-wide styles to this file and they'll appear at the top of the
+* compiled file, but it's generally better to create a new file per style scope.
+*
+*= require_tree libs
+*= require layout
+*= require_self
+*/
+
+.distance-margin-top {
+    margin-top: 1em;
+}
+.distance-margin-bottom {
+    margin-bottom: 1em;
+}
+.distance-padding-top {
+    padding-top: 1em;
+}
+.distance-padding-bottom {
+    padding-bottom: 1em;
+}
+
+.text-center {
+    text-align: center;
+}
+
+.header {
+    background-color: #d78e59;
+    color: #fff;
+}
+.container {
+    margin-left: 0;
+    margin-right: 0;
+}
+.left-side-menu {
+    border-right: 1px solid #354444;
+}
+.left-side-menu .active {
+    text-indent: 10px;
+    background-color: #c8d3d3;
+    font-weight: bolder;
+}
+
+.draggable-upload {
+    height: 300px;
+    border: 1px solid green;
+    background-color: white;
+    padding: 30px;
+    outline: 2px dashed black;
+    outline-offset: -10px;
+    cursor: pointer;
+}
+.dz-message {
+    position: relative;
+    display: inline-block;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+}
+.dz-started .dz-message, .dz-success-mark, .dz-error-mark {
+    display: none;
+}

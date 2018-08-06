@@ -19,8 +19,7 @@
     </div>
 
     <footer class="main-footer" role="contentinfo">
-        <h7 class="secondary-text">Contact as (please do not)</h7>
+        <h7 class="secondary-text"><g:message code="com.ivan.page.contactUs" /></h7>
     </footer>
-<div id="spinner" class="spinner" style="display:none;"><g:message code="spinner.alt" default="Loading&hellip;"/></div>
 </body>
 </html>

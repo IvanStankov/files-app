@@ -7,10 +7,24 @@
 * You're free to add application-wide styles to this file and they'll appear at the top of the
 * compiled file, but it's generally better to create a new file per style scope.
 *
+*= require themes/ui-lightness/jquery-ui-1.10.4.custom
 *= require_tree libs
 *= require layout
 *= require_self
 */
+
+.spinner {
+	background: url(spinner.gif) 100% 100% no-repeat transparent;
+	height: 16px;
+	width: 16px;
+    position: absolute;
+    left: 0;
+    right: 0;
+	top: 0;
+	bottom: 0;
+	margin: auto;
+	text-indent: -9999px;
+}
 
 .distance-margin-top {
     margin-top: 1em;
@@ -29,6 +43,10 @@
     text-align: center;
 }
 
+.display-none {
+    display: none;
+}
+
 .header {
     background-color: #d78e59;
     color: #fff;
@@ -36,6 +54,7 @@
 .container {
     margin-left: 0;
     margin-right: 0;
+    max-width: inherit;
 }
 .left-side-menu {
     border-right: 1px solid #354444;
@@ -54,6 +73,7 @@
     outline: 2px dashed black;
     outline-offset: -10px;
     cursor: pointer;
+    position: relative;
 }
 .dz-message {
     position: relative;
@@ -64,4 +84,13 @@
 }
 .dz-started .dz-message, .dz-success-mark, .dz-error-mark {
     display: none;
+}
+
+.ui-dialog.success .ui-dialog-titlebar {
+    background-color: green;
+    background-image: none;
+}
+.ui-dialog.error .ui-dialog-titlebar {
+    background-color: red;
+    background-image: none;
 }

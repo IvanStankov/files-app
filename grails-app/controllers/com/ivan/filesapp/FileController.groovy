@@ -23,8 +23,6 @@ class FileController {
             render status: BAD_REQUEST
         }
 
-        throw new RuntimeException("aaaaaaaaaaaaaaaaaa")
-
         def fileUploadResult = [:]
 
         for (Validator validator : validators) {

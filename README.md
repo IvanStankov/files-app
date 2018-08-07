@@ -1,4 +1,4 @@
-# files-app
+# Files application
 ## Run app
 - ### Through grails CLI
 1. Go to the root application folder

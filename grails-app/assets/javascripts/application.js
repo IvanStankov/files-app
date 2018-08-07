@@ -60,15 +60,15 @@ $(function() {
             paramName: "targetFile",
             dictDefaultMessage: "Drop files here to upload or click to select manually",
             init: function() {
-                this.on("error", function(file, errorMessage, xhr) {
+                this.on("error", function(file, error, xhr) {
 
                     if (xhr.status == 415) {
                         PopupService.showError("Wrong content type", `
-                            Actual content type: ${errorMessage.actualContentType}
+                            Actual content type: ${error.actualContentType}
                             <div>
                                 Expected content types:
                                 <ul>
-                                    ${errorMessage.expectedContentType
+                                    ${error.expectedContentType
                                         .map(contentType => `<li>${contentType}</li>`)
                                         .join('')
                                     }
@@ -79,11 +79,14 @@ $(function() {
                     }
 
                     if (xhr.status == 400) {
-                        PopupService.showError("Tracking changes found!", `File contains tracked changes: ${errorMessage.revisionsNumber}`);
+                        PopupService.showError("Tracking changes found!", `File contains tracked changes: ${error.revisionsNumber}`);
                         return;
                     }
 
-                    PopupService.showError("Error", "Sorry, something went wrong with our server.");
+                    PopupService.showError("Error", `
+                        Sorry, something went wrong with our server:
+                        <div>${error.stacktrace}</div>
+                    `);
                 });
             },
             success: function() {

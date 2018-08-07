@@ -1,10 +1,9 @@
 package com.ivan.filesapp
 
 import org.apache.commons.logging.LogFactory
+import org.springframework.beans.factory.annotation.Autowired
 
 import static org.springframework.http.HttpStatus.*
-
-import org.springframework.beans.factory.annotation.Autowired
 
 class FileController {
     private static final logger = LogFactory.getLog(this)
@@ -35,5 +34,12 @@ class FileController {
         }
 
         render status: OK
+    }
+
+    def handleException(Exception e) {
+        StringWriter writer = new StringWriter()
+        e.printStackTrace(new PrintWriter(writer))
+
+        respond([stacktrace: writer.toString()], status: INTERNAL_SERVER_ERROR)
     }
 }

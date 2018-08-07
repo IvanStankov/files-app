@@ -13,6 +13,8 @@ import spock.lang.Specification
 @TestFor(FileController)
 class FileControllerTest extends Specification {
 
+    private static final String ERROR_MESSAGE = "Wrong"
+
     def validator1 = Mock(Validator)
     def validator2 = Mock(Validator)
 
@@ -47,7 +49,7 @@ class FileControllerTest extends Specification {
 
         1 * this.validator2.validate(*_) >> { args ->
             args[1].status = 500
-            args[2].message = "Wrong"
+            args[2].message = ERROR_MESSAGE
             return false
         }
 
@@ -57,7 +59,49 @@ class FileControllerTest extends Specification {
         then:
         0 * validator1.validate(*_) // first validator should not be called
         assert response.status == 500
-        assert response.json.message == "Wrong"
+        assert response.json.message == ERROR_MESSAGE
+    }
+
+    def "save when first validation returns true and second fails should return error"() {
+        given:
+        def file = Mock(MultipartFile)
+        file.getName() >> "targetFile"
+        file.empty >> false
+        request.addFile(file)
+
+        1 * validator2.validate(*_) >> true
+        1 * this.validator1.validate(*_) >> { args ->
+            args[1].status = 500
+            args[2].message = ERROR_MESSAGE
+            return false
+        }
+
+        when:
+        controller.save()
+
+        then:
+        assert response.status == 500
+        assert response.json.message == ERROR_MESSAGE
+    }
+
+    def "save when first validation throws an error should return error with stacktrace"() {
+        given:
+        def file = Mock(MultipartFile)
+        file.getName() >> "targetFile"
+        file.empty >> false
+        request.addFile(file)
+
+        1 * this.validator2.validate(*_) >> { throw new RuntimeException(ERROR_MESSAGE) }
+
+        when:
+        controller.save()
+
+        then:
+        0 * validator1.validate(*_) // first validator should not be called
+        assert response.status == 500
+        assert response.json.stacktrace != null
+        assert response.json.stacktrace.contains(ERROR_MESSAGE)
+        assert response.json.stacktrace.contains("java.lang.RuntimeException")
     }
 
 }

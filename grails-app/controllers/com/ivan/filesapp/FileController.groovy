@@ -1,10 +1,13 @@
 package com.ivan.filesapp
 
+import org.apache.commons.logging.LogFactory
+
 import static org.springframework.http.HttpStatus.*
 
 import org.springframework.beans.factory.annotation.Autowired
 
 class FileController {
+    private static final logger = LogFactory.getLog(this)
 
     static responseFormats = ['json']
 
@@ -16,7 +19,6 @@ class FileController {
     List<Validator> validators
 
     def save() {
-
         def file = request.getFile("targetFile")
 
         if (file.empty) {

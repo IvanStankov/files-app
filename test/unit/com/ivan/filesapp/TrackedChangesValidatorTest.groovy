@@ -16,7 +16,7 @@ class TrackedChangesValidatorTest extends Specification {
     def "validate with different files"() {
         given:
         this.inputStream = this.getInputStream(fileName);
-        def file = Mock(MultipartFile.class)
+        def file = Mock(MultipartFile)
         file.getInputStream() >> this.inputStream
 
         def response = [:]

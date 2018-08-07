@@ -9,7 +9,7 @@ class ContentTypeValidatorTest extends Specification {
 
     def "validate with content type"() {
         given:
-        def file = Mock(MultipartFile.class)
+        def file = Mock(MultipartFile)
         file.getContentType() >> contentType
 
         def response = [:]
@@ -40,7 +40,7 @@ class ContentTypeValidatorTest extends Specification {
 
     def "validate where content type is application/octet-stream"() {
         given:
-        def file = Mock(MultipartFile.class)
+        def file = Mock(MultipartFile)
         file.getContentType() >> "application/octet-stream"
         file.getOriginalFilename() >> originalFileName
 
